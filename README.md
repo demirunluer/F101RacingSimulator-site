@@ -5,5 +5,6 @@ F101 Racing Simulator iOS oyununun tanıtım, destek ve gizlilik sitesi (GitHub 
 - Tanıtım (Marketing URL): https://demirunluer.github.io/F101RacingSimulator-site/
 - Destek (Support URL): https://demirunluer.github.io/F101RacingSimulator-site/support.html
 - Gizlilik Politikası: https://demirunluer.github.io/F101RacingSimulator-site/privacy.html
+- Yaş Uygunluğu (Age Suitability URL): https://demirunluer.github.io/F101RacingSimulator-site/age.html
 
 Destek talepleri bu deponun [Issues](https://github.com/demirunluer/F101RacingSimulator-site/issues) bölümünden alınır.
