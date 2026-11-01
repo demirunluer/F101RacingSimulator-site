@@ -36,9 +36,8 @@
         <p class="lead">Kendi pilotunu yarat ya da bir pilotun yerine geç. 27 gerçek pistte sıralama turu at,
           zamanında kalk, kürsüye çık ve sezonlar boyunca dünya şampiyonluğu için yarış.</p>
         <div class="cta">
-          <span class="btn" aria-disabled="true">
-            App Store'da çok yakında
-          </span>
+          <span class="btn" id="store-soon" aria-disabled="true">App Store'da çok yakında</span>
+          <a class="btn" id="store-link" href="#" hidden>App Store'dan İndir</a>
           <a class="btn ghost" href="support.html">Nasıl oynanır?</a>
         </div>
       </div>
@@ -138,7 +137,7 @@
         <h2>Career-mode racing for iPhone</h2>
         <p class="muted">Create your driver or replace one of 22 drivers, pick from 11 teams and race on 27 real-world circuits.
           One-lap qualifying, light-based starts, simple drag-to-steer controls, a podium and champagne celebration,
-          a trophy for every Grand Prix, newspaper headlines and Game Center leaderboards. Coming soon to the App Store.</p>
+          a trophy for every Grand Prix, newspaper headlines and Game Center leaderboards. For iPhone with iOS 16 or later.</p>
       </div>
     </section>
   </main>
@@ -148,11 +147,30 @@
       <div class="links">
         <a href="support.html">Destek / Support</a>
         <a href="privacy.html">Gizlilik Politikası / Privacy Policy</a>
+        <a href="#" data-store hidden>App Store</a>
       </div>
       <p>F101 hayali bir yarış serisidir. Takım ve pilot isimleri kurgusaldır; oyunun hiçbir gerçek yarış serisi, takım ya da pilotla bağlantısı yoktur.</p>
       <p>Pist çizgileri: bacinger/f1-circuits (MIT). İstanbul Park çevresi: © OpenStreetMap katkıcıları (ODbL). Ses ve müzik oyuna özel olarak üretilmiştir.</p>
       <p>© 2026 F101 Racing Simulator</p>
     </div>
   </footer>
+  <script>
+    // Oyun App Store'da yayınlandığında "çok yakında" yerine mağaza bağlantısı kendiliğinden görünür.
+    (async () => {
+      for (const country of ["tr", "us"]) {
+        try {
+          const r = await fetch("https://itunes.apple.com/lookup?bundleId=com.demirunluer.F101RacingSimulator&country=" + country);
+          const app = (await r.json()).results?.[0];
+          if (!app?.trackViewUrl) continue;
+          const link = document.getElementById("store-link");
+          link.href = app.trackViewUrl;
+          link.hidden = false;
+          document.getElementById("store-soon").hidden = true;
+          document.querySelectorAll("[data-store]").forEach(a => { a.href = app.trackViewUrl; a.hidden = false; });
+          return;
+        } catch (e) { /* bağlantı yoksa "çok yakında" kalır */ }
+      }
+    })();
+  </script>
 </body>
 </html>
